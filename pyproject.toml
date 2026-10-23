@@ -4,11 +4,15 @@ version = "0.1.0"
 description = "Domain generalization for chest X-ray disease classification (CheXpert -> NIH)"
 requires-python = ">=3.11,<3.13"
 dependencies = [
-    # Cheaha is CentOS 7 (glibc 2.17); torch >= 2.6 ships manylinux_2_28-only wheels.
+    # Cheaha is CentOS 7 (glibc 2.17); newer releases ship manylinux_2_28-only wheels.
     "torch==2.5.1",
     "torchvision==0.20.1",
-    "pandas>=2.0",
-    "scikit-learn>=1.4",
+    "pandas>=2.0,<2.3.1",
+    "scikit-learn>=1.4,<1.8",
     "pyyaml>=6.0",
     "tqdm>=4.66",
 ]
+
+[tool.uv]
+# Transitive deps whose newer wheels also require glibc >= 2.28.
+constraint-dependencies = ["numpy<2.3", "pillow<13", "scipy<1.17"]

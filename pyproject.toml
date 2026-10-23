@@ -1,0 +1,13 @@
+[project]
+name = "comp5030-termproject"
+version = "0.1.0"
+description = "Domain generalization for chest X-ray disease classification (CheXpert -> NIH)"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.4",
+    "torchvision>=0.19",
+    "pandas>=2.0",
+    "scikit-learn>=1.4",
+    "pyyaml>=6.0",
+    "tqdm>=4.66",
+]

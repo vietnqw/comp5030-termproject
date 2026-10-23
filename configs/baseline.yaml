@@ -1,0 +1,11 @@
+# ERM baseline. data_root/output_dir are overridden on Cheaha via --data-root/--output-dir.
+data_root: data
+train_csv: chexpert-small/chexpert_train.csv
+val_csv: chexpert-small/chexpert_val.csv
+test_csv: nih-cxr14/nih_test.csv
+output_dir: outputs/baseline
+pretrained: true
+epochs: 5
+batch_size: 64
+lr: 1.0e-4
+num_workers: 8

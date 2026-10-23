@@ -1,0 +1,13 @@
+# Tiny CPU run to prove the pipeline end-to-end. Point --data-root at any folder
+# holding chexpert_train.csv / chexpert_val.csv / nih_test.csv with a few images.
+data_root: data
+train_csv: chexpert_train.csv
+val_csv: chexpert_val.csv
+test_csv: nih_test.csv
+output_dir: outputs/smoke
+pretrained: false
+epochs: 1
+batch_size: 4
+lr: 1.0e-4
+num_workers: 0
+limit: 16

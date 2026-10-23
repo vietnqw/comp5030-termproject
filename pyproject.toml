@@ -7,12 +7,12 @@ dependencies = [
     # Cheaha is CentOS 7 (glibc 2.17); newer releases ship manylinux_2_28-only wheels.
     "torch==2.5.1",
     "torchvision==0.20.1",
-    "pandas>=2.0,<2.3.1",
-    "scikit-learn>=1.4,<1.8",
+    "pandas==2.3.0",
+    "scikit-learn==1.7.2",
     "pyyaml>=6.0",
     "tqdm>=4.66",
 ]
 
 [tool.uv]
-# Transitive deps whose newer wheels also require glibc >= 2.28.
-constraint-dependencies = ["numpy<2.3", "pillow<13", "scipy<1.17"]
+# Transitive deps pinned to the last releases with glibc-2.17 wheels (verified on PyPI).
+constraint-dependencies = ["numpy==2.2.6", "pillow==12.2.0", "scipy==1.16.3"]

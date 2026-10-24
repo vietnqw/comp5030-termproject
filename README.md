@@ -48,6 +48,7 @@ Cheaha (clone into `$WORKSPACE`, then from the repo root):
 ```bash
 uv sync
 mkdir -p logs
+sbatch jobs/data.sbatch                  # one-time: download + extract + build CSVs
 sbatch jobs/train.sbatch                 # -> $RUNS/comp5030-termproject/baseline-<jobid>
 RUN=baseline-<jobid> sbatch jobs/eval.sbatch   # NIH test + copy results to $RESULTS
 ```

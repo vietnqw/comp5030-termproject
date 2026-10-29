@@ -28,15 +28,16 @@ def load_config(path, data_root=None, output_dir=None):
     return config
 
 
-def make_loader(config, csv_key, shuffle=False):
+def make_loader(config, csv_key, train=False):
     dataset = ChestXrayDataset(
         Path(config["data_root"]) / config[csv_key],
         limit=config.get("limit"),
+        augment=train and config.get("augment", False),
     )
     return DataLoader(
         dataset,
         batch_size=config["batch_size"],
-        shuffle=shuffle,
+        shuffle=train,
         num_workers=config["num_workers"],
         pin_memory=True,
     )

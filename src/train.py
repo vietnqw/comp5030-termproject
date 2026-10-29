@@ -45,7 +45,7 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    train_loader = make_loader(config, "train_csv", shuffle=True)
+    train_loader = make_loader(config, "train_csv", train=True)
     val_loader = make_loader(config, "val_csv")
     model = build_model(pretrained=config["pretrained"]).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=config["lr"])

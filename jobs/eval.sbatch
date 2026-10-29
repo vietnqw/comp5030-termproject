@@ -20,5 +20,5 @@ uv run python -m src.evaluate --config configs/baseline.yaml \
     --ckpt "$RUN_DIR/best.pt"
 
 # Keep the finished run's metrics + checkpoint on /data (scratch is purged).
-mkdir -p "$RESULTS/comp5030-termproject/$RUN"
-cp "$RUN_DIR"/*.json "$RUN_DIR/best.pt" "$RESULTS/comp5030-termproject/$RUN/"
+mkdir -p "$PROJECTS/comp5030-termproject/$RUN"
+cp "$RUN_DIR"/*.json "$RUN_DIR/best.pt" "$PROJECTS/comp5030-termproject/$RUN/"

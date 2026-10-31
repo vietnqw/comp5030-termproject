@@ -3,7 +3,7 @@ data_root: data
 train_csv: chexpert-small/chexpert_train.csv
 val_csv: chexpert-small/chexpert_val.csv
 test_csv: nih-cxr14/nih_test.csv
-output_dir: outputs/aug
+output_dir: scratch/aug
 pretrained: true
 augment: true
 epochs: 5

@@ -8,16 +8,14 @@
 #SBATCH --time=12:00:00
 #SBATCH --output=logs/%x_%j.out
 
-# One-time: wipe any partial downloads, download + extract both datasets, build the CSVs.
+# One-time: download + extract both datasets, build the CSVs.
 set -euo pipefail
-. ~/.cheaha_paths.sh
-cd "$WORKSPACE/comp5030-termproject"
+. ~/.cheaha_env.sh
 
-rm -rf "$DATASETS/chexpert-small" "$DATASETS/nih-cxr14"
 bash scripts/download_data.sh
 
 echo "== extracted layout =="
-find "$DATASETS/chexpert-small" "$DATASETS/nih-cxr14" -maxdepth 3 -type d
+find data/chexpert-small/ data/nih-cxr14/ -maxdepth 3 -type d
 
-uv run python scripts/prepare_data.py --data-root "$DATASETS"
+uv run python scripts/prepare_data.py --data-root data
 echo "== done =="

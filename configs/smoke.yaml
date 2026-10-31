@@ -4,7 +4,7 @@ data_root: data
 train_csv: chexpert_train.csv
 val_csv: chexpert_val.csv
 test_csv: nih_test.csv
-output_dir: outputs/smoke
+output_dir: scratch/smoke
 pretrained: false
 epochs: 1
 batch_size: 4

@@ -18,17 +18,17 @@ scripts/    download_data.sh, prepare_data.py
 jobs/       train.sbatch, eval.sbatch (Cheaha SLURM)
 ```
 
-Outputs (checkpoints, metrics) are written wherever `--output-dir` points; nothing is committed.
+Outputs (checkpoints, metrics) go to `scratch/` unless `--output-dir` says otherwise; nothing is committed.
 
 ## Setup
 
 Dependencies are managed with [uv](https://docs.astral.sh/uv/): `uv sync`.
 
-Data goes under one root (`$DATASETS` on Cheaha, `./data/` locally):
+Data goes under `data/`, on every machine:
 
 ```bash
 bash scripts/download_data.sh                     # Kaggle mirrors; needs ~/.kaggle/kaggle.json
-uv run python scripts/prepare_data.py --data-root "$DATASETS"
+uv run python scripts/prepare_data.py --data-root data
 ```
 
 `prepare_data.py` writes the unified CSVs the code reads: `chexpert-small/chexpert_{train,val}.csv`
@@ -36,19 +36,19 @@ and `nih-cxr14/nih_test.csv` (image paths relative to each CSV's directory).
 
 ## Run
 
-Local (any machine):
+On any machine:
 
 ```bash
-uv run python -m src.train --config configs/baseline.yaml --data-root data
-uv run python -m src.evaluate --config configs/baseline.yaml --data-root data --ckpt outputs/baseline/best.pt
+uv run python -m src.train --config configs/baseline.yaml
+uv run python -m src.evaluate --config configs/baseline.yaml --ckpt scratch/baseline/best.pt
 ```
 
-Cheaha (clone into `$WORKSPACE`, then from the repo root):
+Cheaha (clone into `~/workspace`, then from the repo root):
 
 ```bash
+cheaha init
 uv sync
-mkdir -p logs
 sbatch jobs/data.sbatch                  # one-time: download + extract + build CSVs
-sbatch jobs/train.sbatch                 # -> $RUNS/comp5030-termproject/baseline-<jobid>
-RUN=baseline-<jobid> sbatch jobs/eval.sbatch   # NIH test + copy results to $PROJECTS
+sbatch jobs/train.sbatch                 # -> scratch/baseline-<jobid>
+RUN=baseline-<jobid> sbatch jobs/eval.sbatch   # NIH test + copy results to data/
 ```

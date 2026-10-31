@@ -1,6 +1,6 @@
 """Evaluate a checkpoint on a CSV split (used for the one-time NIH test).
 
-    python -m src.evaluate --config configs/baseline.yaml --ckpt outputs/baseline/best.pt
+    python -m src.evaluate --config configs/baseline.yaml --ckpt scratch/baseline/best.pt
 """
 
 import argparse

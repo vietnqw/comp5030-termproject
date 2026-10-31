@@ -1,8 +1,8 @@
 __pycache__/
 *.pyc
 .venv/
-outputs/
-logs/
-data/
+/data
+/scratch
+/logs
 *.pt
 *.pth

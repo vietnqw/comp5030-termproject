@@ -10,15 +10,12 @@
 #SBATCH --output=logs/%x_%j.out
 
 # One-time NIH test of a finished run: RUN=<run-name> sbatch jobs/eval.sbatch
-. ~/.cheaha_paths.sh
-cd "$WORKSPACE/comp5030-termproject"
-: "${RUN:?set RUN=<run-name> (folder under \$RUNS/comp5030-termproject)}"
-RUN_DIR="$RUNS/comp5030-termproject/$RUN"
+. ~/.cheaha_env.sh
+: "${RUN:?set RUN=<run-name> (folder under scratch/)}"
+RUN_DIR="scratch/$RUN"
 
-uv run python -m src.evaluate --config configs/baseline.yaml \
-    --data-root "$DATASETS" \
-    --ckpt "$RUN_DIR/best.pt"
+uv run python -m src.evaluate --config configs/baseline.yaml --ckpt "$RUN_DIR/best.pt"
 
-# Keep the finished run's metrics + checkpoint on /data (scratch is purged).
-mkdir -p "$PROJECTS/comp5030-termproject/$RUN"
-cp "$RUN_DIR"/*.json "$RUN_DIR/best.pt" "$PROJECTS/comp5030-termproject/$RUN/"
+# Keep the finished run's metrics + checkpoint in data/ (scratch is purged).
+mkdir -p "data/$RUN"
+cp "$RUN_DIR"/*.json "$RUN_DIR/best.pt" "data/$RUN/"

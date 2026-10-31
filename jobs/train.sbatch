@@ -10,11 +10,8 @@
 #SBATCH --output=logs/%x_%j.out
 
 # Pick the experiment with CONFIG, e.g.: CONFIG=configs/aug.yaml sbatch jobs/train.sbatch
-. ~/.cheaha_paths.sh
-cd "$WORKSPACE/comp5030-termproject"
+. ~/.cheaha_env.sh
 CONFIG=${CONFIG:-configs/baseline.yaml}
 RUN=${RUN:-$(basename "$CONFIG" .yaml)-$SLURM_JOB_ID}
 
-uv run python -m src.train --config "$CONFIG" \
-    --data-root "$DATASETS" \
-    --output-dir "$RUNS/comp5030-termproject/$RUN"
+uv run python -m src.train --config "$CONFIG" --output-dir "scratch/$RUN"

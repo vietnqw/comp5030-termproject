@@ -1,6 +1,6 @@
 """Build unified CSVs (image_path + one 0/1 column per shared label) for both datasets.
 
-    python scripts/prepare_data.py --data-root $DATASETS
+    python scripts/prepare_data.py --data-root data
 
 Expects (nested layout may vary; files are located by name):
   <data-root>/chexpert-small/.../{train.csv,valid.csv} + the images they reference
